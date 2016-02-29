@@ -1,6 +1,6 @@
 # Message parser
 
-**Message parsers** it is microservice for parse messages and calculated reusult date based on predefined rules.
+**Message parsers** it is microservice for parse messages and calculated result date based on predefined rules.
 
 ## Usage
 
@@ -24,19 +24,19 @@ Send **POST** request with **message** and **issueDateTime** to calculate result
 Actions to take are defined in **seeds.rb**.
 To define your own actions you should use delivered [DSL](https://en.wikipedia.org/wiki/Domain-specific_language).
 ##### Action rules:
-* message are striped (multi white spaces are countes as one).
+* message are striped (multi white spaces are count as one).
 * all numeric values in message are parsed and can be send to **operation** by defining **params**.
 * **prams** ordinal start from **0**.
 * you can define many **params**.
 
 #### Action template
-```
+```ruby
 Actions.define do
   message '
     <your_message>
     '
 
-  operation <opperation_class>
+  operation <operation_class>
   params do
     ordinal <parameter_ordinal>, <parameter_name>
   end
@@ -44,7 +44,7 @@ end
 ```
 
 #### Operation template
-```
+```ruby
 class OperationName
   def calculate(issue_date_time, params)
     issue_date_time + params.fetch(:parameter_name).hours
@@ -53,7 +53,7 @@ end
 ```
 
 #### Predefined action for previous example
-```
+```ruby
 Actions.define do
   message '
     Order was made. Your package will be deliver within 48 hours
@@ -65,7 +65,7 @@ Actions.define do
   end
 ```
 
-## Instalation
+## Installation
 
 You need to have installed [bundler](http://bundler.io/).
 
@@ -77,7 +77,7 @@ Run database migration.
 
     rake db:migrate
 
-Fill databse with predefined rules.
+Fill database with predefined rules.
 
     rake db:seed    
 
