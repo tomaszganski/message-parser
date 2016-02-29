@@ -1,0 +1,5 @@
+.rvmrc
+.ruby-version
+.idea/*
+#/db/test.sqlite3
+/*.iml
